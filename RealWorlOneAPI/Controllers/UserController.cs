@@ -17,7 +17,20 @@ namespace RealWorlOneAPI.Controllers {
             this.userRepository = userRepository;
         }
 
-        // GET user
+        /// <summary>
+        /// GET user detail with username
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        ///
+        ///     GET api/User/{username}
+        ///     {
+        ///        "username": 90
+        ///     }
+        ///     
+        /// </remarks>
+        /// <param name="username"></param>
+        /// <returns></returns>
         [HttpGet("{username}")]
         public IActionResult Get(string username) {
             if (string.IsNullOrEmpty(username)) {
@@ -28,7 +41,11 @@ namespace RealWorlOneAPI.Controllers {
             return Json(user);
         }
 
-        // POST user
+        /// <summary>
+        /// Add new user
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post([FromBody] User value) {
             if (value == null) {
@@ -39,7 +56,11 @@ namespace RealWorlOneAPI.Controllers {
             return Json(createdUser);
         }
 
-        // PUT user/mali
+        /// <summary>
+        /// Update password of user
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPut]
         public IActionResult Put([FromBody] User value) {
             if (value == null) {
@@ -58,7 +79,11 @@ namespace RealWorlOneAPI.Controllers {
         }
 
 
-        // DELETE user/mali
+        /// <summary>
+        /// Delete user
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpDelete]
         public IActionResult Delete([FromBody] User value) {
             var user = userRepository.GetById(value.Username);
