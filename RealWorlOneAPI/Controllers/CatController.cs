@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RealWorlOneAPI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RealWorlOneAPI.Controllers {
     [BasicAuthorization]
@@ -22,6 +18,13 @@ namespace RealWorlOneAPI.Controllers {
         public IActionResult Get() {
 
             return File(cat.Get(), "image/jpeg");
+        }
+
+        // GET /rotation
+        [HttpGet("{rotation}")]
+        public IActionResult Get(int rotation) {
+
+            return File(cat.GetByRotate(rotation), "image/jpeg");
         }
     }
 }

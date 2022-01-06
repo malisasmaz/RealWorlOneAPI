@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RealWorlOneAPI.Models;
 using RealWorlOneAPI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RealWorlOneAPI.Controllers {
     [BasicAuthorization]
@@ -17,7 +13,7 @@ namespace RealWorlOneAPI.Controllers {
             this.userRepository = userRepository;
         }
 
-        // GET user
+        // GET user/admin
         [HttpGet("{username}")]
         public IActionResult Get(string username) {
             if (string.IsNullOrEmpty(username)) {
@@ -39,7 +35,7 @@ namespace RealWorlOneAPI.Controllers {
             return Json(createdUser);
         }
 
-        // PUT user/mali
+        // PUT user
         [HttpPut]
         public IActionResult Put([FromBody] User value) {
             if (value == null) {
@@ -58,7 +54,7 @@ namespace RealWorlOneAPI.Controllers {
         }
 
 
-        // DELETE user/mali
+        // DELETE user
         [HttpDelete]
         public IActionResult Delete([FromBody] User value) {
             var user = userRepository.GetById(value.Username);
