@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RealWorlOneAPI.Models;
 using RealWorlOneAPI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RealWorlOneAPI.Controllers {
     [BasicAuthorization]

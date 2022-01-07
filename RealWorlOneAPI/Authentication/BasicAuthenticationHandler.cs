@@ -3,7 +3,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RealWorlOneAPI.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -57,11 +56,10 @@ namespace RealWorlOneAPI.Services {
         }
 
         public bool IsAuthorizedUser(string username, string password) {
-            // In this method we can handle our database logic here...
-
-            //TODO: default user added 
-            if (!context.Users.Any(x => x.Username == "mali")) {
-                context.Users.Add(new User { Username = "mali", Password = "demo" });
+           
+            //default user added 
+            if (!context.Users.Any(x => x.Username == "admin")) {
+                context.Users.Add(new User { Username = "admin", Password = "admin" });
                 context.SaveChanges();
             }
 
