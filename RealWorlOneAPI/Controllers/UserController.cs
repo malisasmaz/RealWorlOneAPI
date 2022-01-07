@@ -3,7 +3,6 @@ using RealWorlOneAPI.Models;
 using RealWorlOneAPI.Services;
 
 namespace RealWorlOneAPI.Controllers {
-    [BasicAuthorization]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : Controller {
@@ -27,6 +26,7 @@ namespace RealWorlOneAPI.Controllers {
         /// </remarks>
         /// <param name="username"></param>
         /// <returns></returns>
+        [BasicAuthorization]
         [HttpGet("{username}")]
         public IActionResult Get(string username) {
             if (string.IsNullOrEmpty(username)) {
@@ -57,6 +57,7 @@ namespace RealWorlOneAPI.Controllers {
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [BasicAuthorization]
         [HttpPut]
         public IActionResult Put([FromBody] User value) {
             if (value == null) {
@@ -80,6 +81,7 @@ namespace RealWorlOneAPI.Controllers {
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        [BasicAuthorization]
         [HttpDelete]
         public IActionResult Delete([FromBody] User value) {
             var user = userRepository.GetById(value.Username);
