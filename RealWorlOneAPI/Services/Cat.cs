@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RealWorlOneAPI.Models;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -8,7 +9,12 @@ namespace RealWorlOneAPI.Services {
     public class Cat : ICat {
         private const string URL = "https://cataas.com/cat";
 
-        public byte[] GetByRotate(int rotation) {
+        /// <summary>
+        /// Get cat image by rotation
+        /// </summary>
+        /// <param name="rotation"></param>
+        /// <returns></returns>
+        public byte[] GetByRotate(Rotate rotation) {
             HttpClient client = new HttpClient();
             try {
                 HttpResponseMessage response = client.GetAsync(URL).Result;
@@ -17,13 +23,13 @@ namespace RealWorlOneAPI.Services {
                 var bmp = new Bitmap(new MemoryStream(image));
 
                 switch (rotation) {
-                    case 90:
+                    case Rotate.Rotate90:
                         bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
                         break;
-                    case 180:
+                    case Rotate.Rotate180:
                         bmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
                         break;
-                    case 270:
+                    case Rotate.Rotate270:
                         bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
                         break;
                     default:
@@ -43,8 +49,13 @@ namespace RealWorlOneAPI.Services {
                 throw ex;
             }
         }
+
+        /// <summary>
+        /// Get cat image upside down
+        /// </summary>
+        /// <returns></returns>
         public byte[] Get() {
-            return GetByRotate(180);
+            return GetByRotate(Rotate.Rotate180);
         }
     }
 }

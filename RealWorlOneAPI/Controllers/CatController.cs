@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RealWorlOneAPI.Models;
 using RealWorlOneAPI.Services;
 
 namespace RealWorlOneAPI.Controllers {
@@ -42,10 +43,10 @@ namespace RealWorlOneAPI.Controllers {
         ///     }
         ///
         /// </remarks>
-        /// <param name="rotation"></param>
+        /// <param name="rotation">Rotate options 0-90-180-270</param>
         /// <response code="401">Unauthorized user</response> 
         [HttpGet("{rotation}")]
-        public IActionResult Get(int rotation) {
+        public IActionResult Get(Rotate rotation) {
 
             return File(cat.GetByRotate(rotation), "image/jpeg");
         }
